@@ -1,14 +1,14 @@
 x509 Certificate Tracing Tool
 =============================
 
-`cert-trace.py` allows you to input a certificate "chain" PEM and,
+`cert-trace` allows you to input a certificate "chain" PEM and,
 optionally, a CA PEM file.  It will show the signing linkage between
 the individual certificates in the file(s).
 
 Usage
 -----
 
-    usage: cert-trace.py [-h] [--ca CA] certs
+    usage: cert-trace [-h] [--ca CA] certs
 
     positional arguments:
       certs
@@ -19,7 +19,7 @@ Usage
 
 Using the example certificate chain and CA files in this repo:
 
-    > python cert-trace.py spot-elfwerks-org-fullchain.pem --ca identrust-root-ca-x3.pem
+    > cert-trace spot-elfwerks-org-fullchain.pem --ca identrust-root-ca-x3.pem
 
     CA - loaded 1 certificates from identrust-root-ca-x3.pem
     ------
@@ -42,7 +42,7 @@ Using the example certificate chain and CA files in this repo:
 
 Note that the CA file is printed first and there is one certificate in
 the PEM file which is a self-signed certificate.  The chain file,
-which would be presented by the server side of the ssl connection has
+which would be presented by the server side of the SSL connection has
 two certificates:  1) the host certificate for spot.elfwerks.org, and
 2) an intermediate signing certificate from the Let's Encrypt
 project.  Finally, the Let's Encrypt, intermediate certificate is
@@ -55,13 +55,13 @@ Providing a CA file is optional.
 Installation
 ------------
 
-This project is a self contained, python program.  The required python
-libraries are listed in the `requirements.txt` file; simply install
-them with `pip install -r requirements.txt` and run the program as
-shown in the usage section.
+Install locally or in a virtual environment:
 
-TODO - add a `setup.py` file so the script can be properly installed,
-(and then update the installation instructions).
+    > python setup.py develop
+
+Install to the host system:
+
+    > sudo -A python setup.py
 
 
 Credits

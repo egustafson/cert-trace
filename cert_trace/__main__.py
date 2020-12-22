@@ -19,6 +19,7 @@ import argparse
 import binascii
 import io
 import pem
+import sys
 
 from cryptography import x509
 from cryptography.x509 import AuthorityKeyIdentifier
@@ -76,6 +77,7 @@ class Cert:
 
 def trace2(chain, ca):
     cert_index  = {}  # keyed by subject key identifier
+    cert_list   = []  # full list of certs (the index drops duplicates)
     print_stack = []  # ordered list of items to print
     print_stack.append("")
     if ca:
@@ -87,7 +89,9 @@ def trace2(chain, ca):
             idx = "CA-{}".format(ii)
             cert = Cert(data)
             cert.set_index(idx)
-            cert_index[cert.subjectKeyId()] = cert
+            cert_list.append(cert)
+            if cert.subjectKeyId() not in cert_index: ## earliest key wins
+                cert_index[cert.subjectKeyId()] = cert
             print_stack.append(cert)
 
     chain_pems = pem.parse(chain.read())
@@ -98,10 +102,12 @@ def trace2(chain, ca):
         idx = "{}".format(ii)
         cert = Cert(data)
         cert.set_index(idx)
-        cert_index[cert.subjectKeyId()] = cert
+        cert_list.append(cert)
+        if cert.subjectKeyId() not in cert_index: ## earliest key wins
+            cert_index[cert.subjectKeyId()] = cert
         print_stack.append(cert)
 
-    for cert in cert_index.values():
+    for cert in cert_list:
         auth_key = cert.authorityKeyId()
         if auth_key:
             auth_cert = cert_index.get(auth_key, None)
@@ -120,8 +126,11 @@ def parse_args():
     return parser.parse_args()
 
 
-if __name__ == "__main__":
+def main():
     args = parse_args()
     trace2(args.certs, args.ca)
-    print("")
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 
