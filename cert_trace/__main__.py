@@ -24,6 +24,7 @@ import sys
 from cryptography import x509
 from cryptography.x509 import AuthorityKeyIdentifier
 from cryptography.x509 import SubjectKeyIdentifier
+from datetime import datetime
 
 class Cert:
     def __init__(self, pem):
@@ -65,6 +66,7 @@ class Cert:
         print("{:>5}: Subject:  {}".format(self.index, self.subject()), file=out)
         print("       Subject Key Identifier:        {}".format(self.subjectKeyId()), file=out)
         print("       Issuer:   {}".format(self.issuer()), file=out)
+        print("       Valid:    {} <-> {}".format(self.cert.not_valid_before_utc, self.cert.not_valid_after_utc), file=out)
         authKeyId = self.authorityKeyId()
         if authKeyId:
             if len(self.auth_index) > 0:
