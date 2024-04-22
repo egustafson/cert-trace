@@ -80,7 +80,7 @@ class Cert:
         print("       {}  {} <-> {}".format(self.show_date_validity(),
                                                self.cert.not_valid_before_utc,
                                                self.cert.not_valid_after_utc),
-                                            file=out)
+                                               file=out)
         authKeyId = self.authorityKeyId()
         if authKeyId:
             if len(self.auth_index) > 0:
