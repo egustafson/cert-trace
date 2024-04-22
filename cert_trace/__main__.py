@@ -24,7 +24,7 @@ import sys
 from cryptography import x509
 from cryptography.x509 import AuthorityKeyIdentifier
 from cryptography.x509 import SubjectKeyIdentifier
-from datetime import datetime
+from datetime import datetime, timezone
 
 class Cert:
     def __init__(self, pem):
@@ -61,8 +61,8 @@ class Cert:
         self.auth_index = idx
 
     def date_is_valid(self):
-        now = datetime.now()
-        if (self.cert.not_valid_after >= now) and (self.cert.not_valid_before) <= now:
+        now = datetime.now(timezone.utc)
+        if (self.cert.not_valid_after_utc >= now) and (self.cert.not_valid_before_utc) <= now:
             return True
         return False
 
