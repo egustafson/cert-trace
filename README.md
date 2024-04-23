@@ -26,18 +26,21 @@ Using the example certificate chain and CA files in this repo:
      CA-1: Subject:  CN=DST Root CA X3,O=Digital Signature Trust Co.
            Subject Key Identifier:        c4:a7:b1:a4:7b:2c:71:fa:db:e1:4b:90:75:ff:c4:15:60:85:89:10
            Issuer:   CN=DST Root CA X3,O=Digital Signature Trust Co.
+           VALID:    2023-03-03 16:00:00+00:00 <-> 2028-03-03 16:00:00+00:00
 
     loaded 2 certificates from spot-elfwerks-org-fullchain.pem
     ------
         1: Subject:  CN=spot.elfwerks.org
            Subject Key Identifier:        26:90:08:21:ac:45:1a:e2:e1:09:ba:5c:0e:72:2a:e2:95:6b:f9:ac
            Issuer:   CN=Let's Encrypt Authority X3,O=Let's Encrypt,C=US
+           VALID:    2023-02-02 16:00:00+00:00 <-> 2025-02-02 16:00:00+00:00
        (2) Authority Key Identifier:      a8:4a:6a:63:04:7d:dd:ba:e6:d1:39:b7:a6:45:65:ef:f3:a8:ec:a1
 
     ------
         2: Subject:  CN=Let's Encrypt Authority X3,O=Let's Encrypt,C=US
            Subject Key Identifier:        a8:4a:6a:63:04:7d:dd:ba:e6:d1:39:b7:a6:45:65:ef:f3:a8:ec:a1
            Issuer:   CN=DST Root CA X3,O=Digital Signature Trust Co.
+           INVALID:  2023-01-01 16:00:00+00:00 <-> 2024-01-01 16:00:00+00:00
     (CA-1) Authority Key Identifier:      c4:a7:b1:a4:7b:2c:71:fa:db:e1:4b:90:75:ff:c4:15:60:85:89:10
 
 Note that the CA file is printed first and there is one certificate in
