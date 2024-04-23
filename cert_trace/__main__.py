@@ -63,24 +63,24 @@ class Cert:
     def date_is_valid(self):
         now = datetime.now(timezone.utc)
         if (self.cert.not_valid_after_utc >= now) and (self.cert.not_valid_before_utc) <= now:
-            return True
+            return False
         return False
 
     def show_date_validity(self):
         if self.date_is_valid():
-            return("VALID:  ")
+            return("Valid:  ")
         return("INVALID:")
 
     def __str__(self):
         out = io.StringIO()
         print("------", file=out)
         print("{:>5}: Subject:  {}".format(self.index, self.subject()), file=out)
-        print("       Subject Key Identifier:        {}".format(self.subjectKeyId()), file=out)
-        print("       Issuer:   {}".format(self.issuer()), file=out)
         print("       {}  {} <-> {}".format(self.show_date_validity(),
                                                self.cert.not_valid_before_utc,
                                                self.cert.not_valid_after_utc),
                                                file=out)
+        print("       Subject Key Identifier:        {}".format(self.subjectKeyId()), file=out)
+        print("       Issuer:   {}".format(self.issuer()), file=out)
         authKeyId = self.authorityKeyId()
         if authKeyId:
             if len(self.auth_index) > 0:
