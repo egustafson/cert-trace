@@ -63,7 +63,7 @@ class Cert:
     def date_is_valid(self):
         now = datetime.now(timezone.utc)
         if (self.cert.not_valid_after_utc >= now) and (self.cert.not_valid_before_utc) <= now:
-            return False
+            return True
         return False
 
     def show_date_validity(self):
