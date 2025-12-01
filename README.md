@@ -58,13 +58,18 @@ Providing a CA file is optional.
 Installation
 ------------
 
-Install locally or in a virtual environment:
+Install locally (~/.local/bin)
 
-    > python setup.py develop
+    # the following are executed _outside_ a virtual environment
+    > pip install -r requirements.txt
+    > python -m install .
 
-Install to the host system:
+Install within the virtual environment for development (--editable)
 
-    > sudo -A python setup.py
+    # create a virtual environment in `venv`
+    > source venv/bin/activate
+    (venv) > pip install -r requirements.txt
+    (venv) > python -m pip install --editable .
 
 
 Credits
@@ -91,3 +96,9 @@ Reference
   in this example.  (expires Sep 2021)
 * [spot.elfwerks.org certificate](https://crt.sh/?id=3675961133), the
   source of the host certificate used in this example.
+* [How to modernize a setup.py based project](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/), how to use `pip` where `setup.py` was previously used.
+
+ToDo
+----
+
+* Update the `setup.py` to use a more modern Python build strategy.
