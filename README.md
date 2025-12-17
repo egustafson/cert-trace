@@ -58,19 +58,15 @@ Providing a CA file is optional.
 Installation
 ------------
 
-Install locally (~/.local/bin)
+**[`uv` Package Manager](https://docs.astral.sh/uv/) used starting in cert-trace v1.0.0**
 
-    # the following are executed _outside_ a virtual environment
-    > pip install -r requirements.txt
-    > python -m install .
+### Install locally (~/.local/bin)
 
-Install within the virtual environment for development (--editable)
-
-    # create a virtual environment in `venv`
-    > source venv/bin/activate
-    (venv) > pip install -r requirements.txt
-    (venv) > python -m pip install --editable .
-
+    # assumes `uv` is installed
+    > git clone https://github.com/egustafson/cert-trace.git
+    > cd cert-trace
+    > uv install .
+    > cert-trace --help
 
 Credits
 -------
@@ -96,9 +92,3 @@ Reference
   in this example.  (expires Sep 2021)
 * [spot.elfwerks.org certificate](https://crt.sh/?id=3675961133), the
   source of the host certificate used in this example.
-* [How to modernize a setup.py based project](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/), how to use `pip` where `setup.py` was previously used.
-
-ToDo
-----
-
-* Update the `setup.py` to use a more modern Python build strategy.
