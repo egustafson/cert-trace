@@ -65,7 +65,7 @@ Installation
     # assumes `uv` is installed
     > git clone https://github.com/egustafson/cert-trace.git
     > cd cert-trace
-    > uv install .
+    > uv pip install .
     > cert-trace --help
 
 Credits
